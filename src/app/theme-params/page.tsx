@@ -1,29 +1,20 @@
 'use client';
 
-import { ReactNode, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { miniApp, themeParams, useSignal } from '@telegram-apps/sdk-react';
 
-interface PageProps {
-  back?: boolean;
-  children: ReactNode;
-}
-
-export default function Page({ back = false, children }: PageProps) {
+export default function ThemeParamsPage() {
   const tp = useSignal(themeParams.state); 
   const [isDarkMode, setIsDarkMode] = useState(false);
 
   useEffect(() => {
     if (!tp) return;
 
-    // Определяем светлую или тёмную тему
     const bgColor = tp.bg_color || '#ffffff';
     const isLight = bgColor.toLowerCase() === '#ffffff';
     setIsDarkMode(!isLight);
 
-    // Устанавливаем фон приложения
     miniApp.setBackgroundColor(bgColor);
-
-    // Настраиваем верхний системный бар
     miniApp.setHeaderColor(isLight ? 'bg_color' : 'secondary_bg_color');
   }, [tp]);
 
@@ -35,7 +26,8 @@ export default function Page({ back = false, children }: PageProps) {
         color: tp?.text_color || (isDarkMode ? '#ffffff' : '#000000'),
       }}
     >
-      {children}
+      <h1 className="text-xl font-bold p-4">Theme Params Page</h1>
+      {/* Здесь можно рендерить контент страницы */}
     </div>
   );
 }
