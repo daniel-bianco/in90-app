@@ -3,7 +3,12 @@
 import { ReactNode, useEffect, useState } from 'react';
 import { miniApp, themeParams, useSignal } from '@telegram-apps/sdk-react';
 
-export function Page({ back = false, children }: { back?: boolean; children: ReactNode }) {
+interface PageProps {
+  back?: boolean;
+  children: ReactNode;
+}
+
+export default function Page({ back = false, children }: PageProps) {
   const tp = useSignal(themeParams.state); 
   const [isDarkMode, setIsDarkMode] = useState(false);
 
