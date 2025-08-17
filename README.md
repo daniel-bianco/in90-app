@@ -1,4 +1,4 @@
-# in90
+# in90 – Telegram Mini-App
 
 **in90** is a minimalist productivity app that allows you to create sessions with tasks and track their completion with a timer. Supports categories (fields) to organize tasks by activity type.
 
